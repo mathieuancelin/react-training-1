@@ -4,19 +4,12 @@ import { Todo } from './Todo';
 
 export const TodoList = React.createClass({
   propTypes: {
-    todos: PropTypes.array,
-    toggleTaskState: PropTypes.func,
-  },
-  getDefaultProps() {
-    return {
-      todos: [],
-    };
+    tasks: PropTypes.array,
+    toggleStatus: PropTypes.func,
   },
   render() {
-    const tasks = this.props.todos.map(todo => {
-      return <Todo
-        task={todo}
-        toggleTaskState={() => this.props.toggleTaskState(todo.id)} />
+    const tasks = this.props.tasks.map(task => {
+      return <Todo task={task} toggleStatus={this.props.toggleStatus} />
     });
     return (
       <div style={{

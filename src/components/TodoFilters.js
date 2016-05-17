@@ -1,33 +1,11 @@
 import React, { PropTypes } from 'react';
 
-export const Checkbox = React.createClass({
-  propTypes: {
-    lable: PropTypes.string,
-    checked: PropTypes.bool,
-    onChange: PropTypes.func,
-  },
-  render() {
-    const props = {};
-    if (this.props.checked) {
-      props.checked = 'checked';
-    }
-    return (
-      <div>
-        <input type="checkbox"
-          onChange={this.props.onChange}
-          {...props} />
-        <span>{this.props.label}</span>
-      </div>
-    );
-  }
-});
-
 export const TodoFilters = React.createClass({
   propTypes: {
-    onChange: React.PropTypes.func,
-    showNewTasks: React.PropTypes.bool,
-    showStartedTasks: React.PropTypes.bool,
-    showDoneTasks: React.PropTypes.bool,
+    showNewTasks: PropTypes.bool,
+    showStartedTasks: PropTypes.bool,
+    showDoneTasks: PropTypes.bool,
+    toggleFilters: PropTypes.func,
   },
   render() {
     return (
@@ -37,10 +15,10 @@ export const TodoFilters = React.createClass({
           display: 'flex',
           flexDirection: 'column' }}>
         <h2>Filtres</h2>
-        <div style={{ display: 'flex' }}>
-          <Checkbox onChange={() => this.props.onChange('NEW')} label="nouvelles" checked={this.props.showNewTasks} />
-          <Checkbox onChange={() => this.props.onChange('STARTED')} label="en cours" checked={this.props.showStartedTasks} />
-          <Checkbox onChange={() => this.props.onChange('DONE')} label="terminées" checked={this.props.showDoneTasks} />
+        <div>
+          <input onChange={() => this.props.toggleFilters('NEW')} checked={this.props.showNewTasks} type="checkbox" /> nouvelles
+          <input onChange={() => this.props.toggleFilters('STARTED')} checked={this.props.showStartedTasks} type="checkbox" /> en cours
+          <input onChange={() => this.props.toggleFilters('DONE')} checked={this.props.showDoneTasks} type="checkbox" /> terminées
         </div>
       </div>
     );
